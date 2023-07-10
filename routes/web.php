@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Blog\Admin\CategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,3 +38,18 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::group(['prefix' => 'blog'], function () {
+    Route::resource('posts', PostController::class)->names('blog.posts');
+});
+
+$groupData = [
+    'prefix'    => 'admin/blog',
+];
+
+Route::group($groupData, function () {
+    $methods = ['index', 'edit', 'update', 'create', 'store'];
+    Route::resource('categories', CategoryController::class)
+        ->only($methods)
+        ->names('categories');
+});
