@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('app')
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-items-center">
             <div class="col-md-12">
-                <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <a class="btn btn-primary" href="{{ route('blog.admin.categories.create') }}">Добавити</a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="btn btn-primary" href="{{ route('categories.create') }}">Добавити</a>
                 </nav>
                 <div class="card">
                     <div class="card-body">
@@ -23,12 +23,12 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>
-                                        <a href="{{ route('blog.admin.categories.edit'), $item->id }}">
+                                        <a href="{{ route('categories.edit', $item->id) }}">
                                             {{ $item->title }}
                                         </a>
                                     </td>
-                                    <td>@if(in_array($item->parent_id, [0, 1])) style="..."@endif
-                                        {{ $item->parent_id }}{{-- $item->parentCategory->title --}}
+                                    <td @if(in_array($item->parent_id, [0, 1])) style="color:coral" @endif>
+                                        {{ $item->parent_id }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -38,5 +38,15 @@
                 </div>
             </div>
         </div>
+        @if($paginator->total() > $paginator->count())
+            <br>
+            <div class="row justify-items-center">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        {{ $paginator->links() }}
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

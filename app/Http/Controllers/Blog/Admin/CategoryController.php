@@ -39,9 +39,12 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $item = BlogCategory::find($id);
+        $categoryList = BlogCategory::all();
+
+        return View::make('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
@@ -49,7 +52,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd(__METHOD__, $request->all(), $id);
     }
 
     /**
