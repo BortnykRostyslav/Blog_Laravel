@@ -41,7 +41,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $item = BlogCategory::find($id);
+        $item = BlogCategory::findOrFail($id);
         $categoryList = BlogCategory::all();
 
         return View::make('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
@@ -52,7 +52,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd(__METHOD__, $request->all(), $id);
+        $item = BlogCategory::find($id);
+        if(empty($item)){
+            return back()
+                ->withErrors(['msg' => 'Запмис id=[{id}] не знайдено'])
+                ->withInput();
+        }
+
+        $data = $request->all();
+        $result = $item
+            ->fill($data)
+            ->save();
+
+        if($result){
+            return redirect()
+                ->route('categories.edit', $item->id)
+                ->with(['success' => 'Успішно збережено']);
+        } else{
+            return back()
+                ->withErrors(['msg' => 'Помилка збереження'])
+                ->withInput();
+        }
     }
 
     /**
