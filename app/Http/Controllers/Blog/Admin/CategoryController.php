@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Http\Requests\BlogCategoryCreateRequest;
+use App\Repositories\BlogCategoryRepository;
 
 class CategoryController extends Controller
 {
@@ -56,10 +57,13 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id, BlogCategoryRepository $categoryRepository)
     {
-        $item = BlogCategory::findOrFail($id);
-        $categoryList = BlogCategory::all();
+        $item = $categoryRepository->getEdit($id);
+        if(empty($item)){
+            abort(404);
+        }
+        $categoryList = $categoryRepository->getForComboBox();
 
         return View::make('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
