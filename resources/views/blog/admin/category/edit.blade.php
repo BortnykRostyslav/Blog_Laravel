@@ -4,9 +4,14 @@
     @php
         /** @var \App\Models\BlogCategory $item */
     @endphp
-    <form method="POST" action="{{ route('categories.update', $item->id) }}">
+
+    @if($item->exists)
+        <form method="POST" action="{{ route('categories.update', $item->id) }}">
         @method('PATCH')
-        @csrf
+            @else
+                <form method="POST" action="{{ route('categories.store', $item->id) }}">
+                    @endif
+                @csrf
         <div class="container">
             @php
             /** @var \Illuminate\Support\ViewErrorBag $errors */

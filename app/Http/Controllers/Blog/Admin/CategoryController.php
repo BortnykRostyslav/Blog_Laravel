@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
 use Illuminate\Support\Facades\View;
-use Illuminate\Http\Request;
 use App\Http\Requests\BlogCategoryUpdateRequest;
+use App\Http\Requests\BlogCategoryCreateRequest;
 
 class CategoryController extends Controller
 {
@@ -27,15 +27,31 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $item = new BlogCategory();
+        $categoryList = BlogCategory::all();
+
+        return View::make('blog.admin.category.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BlogCategoryCreateRequest $request)
     {
-        //
+        $data = $request->input();
+        if(empty($data['slug'])){
+            $data['slug'] = Str::slug($data['title']);
+        }
+
+        $item = (new BlogCategory )->create($data);
+
+        if($item){
+            return redirect()->route('categories.edit', [$item->id])
+                ->with(['succes' => 'Успішно збережено']);
+        } else {
+            return back()->withErrors(['msg' => 'Помилка збереження'])
+                ->withInput();
+        }
     }
     /**
      * Show the form for editing the specified resource.
@@ -61,9 +77,11 @@ class CategoryController extends Controller
         }
 
         $data = $request->all();
-        $result = $item
-            ->fill($data)
-            ->save();
+        if(empty($data['slug'])){
+            $data['slug'] = Str::slug($data['title']);
+        }
+
+        $result = $item->update($data);
 
         if($result){
             return redirect()
