@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\Admin\CategoryController;
+use App\Http\Controllers\Blog\Admin\PostAdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,8 +43,14 @@ $groupData = [
 ];
 
 Route::group($groupData, function () {
+    //BlogCategory
     $methods = ['index', 'edit', 'update', 'create', 'store'];
     Route::resource('categories', CategoryController::class)
         ->only($methods)
         ->names('categories');
+
+    //BlogPosts
+    Route::resource('posts', PostAdminController::class)
+        ->except(['show'])
+        ->names('blog.admin.posts');
 });

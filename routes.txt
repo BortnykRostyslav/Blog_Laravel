@@ -1,0 +1,68 @@
+
+  GET|HEAD        / ................................................................................... 
+  GET|HEAD        _debugbar/assets/javascript debugbar.assets.js тА║ Barryvdh\Debugbar тА║ AssetControllerтАж
+  GET|HEAD        _debugbar/assets/stylesheets debugbar.assets.css тА║ Barryvdh\Debugbar тА║ AssetControllтАж
+  DELETE          _debugbar/cache/{key}/{tags?} debugbar.cache.delete тА║ Barryvdh\Debugbar тА║ CacheContrтАж
+  GET|HEAD        _debugbar/clockwork/{id} debugbar.clockwork тА║ Barryvdh\Debugbar тА║ OpenHandlerControlтАж
+  GET|HEAD        _debugbar/open debugbar.openhandler тА║ Barryvdh\Debugbar тА║ OpenHandlerController@handтАж
+  POST            _ignition/execute-solution ignition.executeSolution тА║ Spatie\LaravelIgnition тА║ ExecuтАж
+  GET|HEAD        _ignition/health-check ignition.healthCheck тА║ Spatie\LaravelIgnition тА║ HealthCheckCoтАж
+  POST            _ignition/update-config ignition.updateConfig тА║ Spatie\LaravelIgnition тА║ UpdateConfiтАж
+  GET|HEAD        admin/blog/categories ........ categories.index тА║ Blog\Admin\CategoryController@index
+  POST            admin/blog/categories ........ categories.store тА║ Blog\Admin\CategoryController@store
+  GET|HEAD        admin/blog/categories/create categories.create тА║ Blog\Admin\CategoryController@create
+  PUT|PATCH       admin/blog/categories/{category} categories.update тА║ Blog\Admin\CategoryController@uтАж
+  GET|HEAD        admin/blog/categories/{category}/edit categories.edit тА║ Blog\Admin\CategoryControlleтАж
+  GET|HEAD        admin/blog/posts ................. blog.admin.posts.index тА║ Blog\PostController@index
+  POST            admin/blog/posts ................. blog.admin.posts.store тА║ Blog\PostController@store
+  GET|HEAD        admin/blog/posts/create ........ blog.admin.posts.create тА║ Blog\PostController@create
+  PUT|PATCH       admin/blog/posts/{post} ........ blog.admin.posts.update тА║ Blog\PostController@update
+  DELETE          admin/blog/posts/{post} ...... blog.admin.posts.destroy тА║ Blog\PostController@destroy
+  GET|HEAD        admin/blog/posts/{post}/edit ....... blog.admin.posts.edit тА║ Blog\PostController@edit
+  GET|HEAD        api/user ............................................................................ 
+  GET|HEAD        blog/posts ............................. blog.posts.index тА║ Blog\PostController@index
+  POST            blog/posts ............................. blog.posts.store тА║ Blog\PostController@store
+  GET|HEAD        blog/posts/create .................... blog.posts.create тА║ Blog\PostController@create
+  GET|HEAD        blog/posts/{post} ........................ blog.posts.show тА║ Blog\PostController@show
+  PUT|PATCH       blog/posts/{post} .................... blog.posts.update тА║ Blog\PostController@update
+  DELETE          blog/posts/{post} .................. blog.posts.destroy тА║ Blog\PostController@destroy
+  GET|HEAD        blog/posts/{post}/edit ................... blog.posts.edit тА║ Blog\PostController@edit
+  GET|HEAD        confirm-password ......... password.confirm тА║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ........................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ................................................................. dashboard
+  POST            email/verification-notification verification.send тА║ Auth\EmailVerificationNotificatiтАж
+  GET|HEAD        email/verify verification.notice тА║ Laravel\Fortify тА║ EmailVerificationPromptControllтАж
+  GET|HEAD        email/verify/{id}/{hash} verification.verify тА║ Laravel\Fortify тА║ VerifyEmailControllтАж
+  GET|HEAD        forgot-password .......... password.request тА║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ............. password.email тА║ Auth\PasswordResetLinkController@store
+  GET|HEAD        login ............................ login тА║ Auth\AuthenticatedSessionController@create
+  POST            login ..................................... Auth\AuthenticatedSessionController@store
+  POST            logout ......................... logout тА║ Auth\AuthenticatedSessionController@destroy
+  PUT             password ........................... password.update тА║ Auth\PasswordController@update
+  GET|HEAD        profile ....................................... profile.edit тА║ ProfileController@edit
+  PATCH           profile ................................... profile.update тА║ ProfileController@update
+  DELETE          profile ................................. profile.destroy тА║ ProfileController@destroy
+  GET|HEAD        register ............................ register тА║ Auth\RegisteredUserController@create
+  POST            register ........................................ Auth\RegisteredUserController@store
+  POST            reset-password .................... password.store тА║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ........... password.reset тА║ Auth\NewPasswordController@create
+  GET|HEAD        sanctum/csrf-cookie sanctum.csrf-cookie тА║ Laravel\Sanctum тА║ CsrfCookieController@show
+  GET|HEAD        two-factor-challenge two-factor.login тА║ Laravel\Fortify тА║ TwoFactorAuthenticatedSessтАж
+  POST            two-factor-challenge Laravel\Fortify тА║ TwoFactorAuthenticatedSessionController@store
+  GET|HEAD        user/confirm-password .......... Laravel\Fortify тА║ ConfirmablePasswordController@show
+  POST            user/confirm-password password.confirm тА║ Laravel\Fortify тА║ ConfirmablePasswordControтАж
+  GET|HEAD        user/confirmed-password-status password.confirmation тА║ Laravel\Fortify тА║ ConfirmedPaтАж
+  POST            user/confirmed-two-factor-authentication two-factor.confirm тА║ Laravel\Fortify тА║ ConfтАж
+  PUT             user/password .... user-password.update тА║ Laravel\Fortify тА║ PasswordController@update
+  PUT             user/profile-information user-profile-information.update тА║ Laravel\Fortify тА║ ProfileтАж
+  POST            user/two-factor-authentication two-factor.enable тА║ Laravel\Fortify тА║ TwoFactorAuthenтАж
+  DELETE          user/two-factor-authentication two-factor.disable тА║ Laravel\Fortify тА║ TwoFactorAutheтАж
+  GET|HEAD        user/two-factor-qr-code two-factor.qr-code тА║ Laravel\Fortify тА║ TwoFactorQrCodeControтАж
+  GET|HEAD        user/two-factor-recovery-codes two-factor.recovery-codes тА║ Laravel\Fortify тА║ RecoverтАж
+  POST            user/two-factor-recovery-codes ....... Laravel\Fortify тА║ RecoveryCodeController@store
+  GET|HEAD        user/two-factor-secret-key two-factor.secret-key тА║ Laravel\Fortify тА║ TwoFactorSecretтАж
+  GET|HEAD        verify-email ........... verification.notice тА║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ........... verification.verify тА║ Auth\VerifyEmailController
+
+                                                                                    Showing [64] routes
+
