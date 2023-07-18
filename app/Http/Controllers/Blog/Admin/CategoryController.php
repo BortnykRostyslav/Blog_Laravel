@@ -55,10 +55,12 @@ class CategoryController extends BaseController
     public function store(BlogCategoryCreateRequest $request)
     {
         $data = $request->input();
+        /*Пішло в обсервер
         if(empty($data['slug'])){
             $data['slug'] = Str::slug($data['title']);
-        }
+        }*/
 
+        //Створить об'єкт и добавить в БД
         $item = (new BlogCategory )->create($data);
 
         if($item){
@@ -96,9 +98,10 @@ class CategoryController extends BaseController
         }
 
         $data = $request->all();
+        /*Пішло в обсервер
         if(empty($data['slug'])){
             $data['slug'] = Str::slug($data['title']);
-        }
+        }*/
 
         $result = $item->update($data);
 
