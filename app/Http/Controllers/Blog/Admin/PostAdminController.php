@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Models\BlogPost;
 use Illuminate\Support\Facades\View;
 use App\Repositories\BlogPostRepository;
+use App\Repositories\BlogCategoryRepository;
 
 /**
  * Управління статтями блога
@@ -14,12 +15,14 @@ use App\Repositories\BlogPostRepository;
 class PostAdminController extends BaseController
 {
     private $blogPostRepository;
+    private $blogCategoryRepository;
 
-    public function __construct(BlogPostRepository $blogPostRepository)
+    public function __construct(BlogPostRepository $blogPostRepository, BlogCategoryRepository $blogCategoryRepository)
     {
         parent::__construct();
 
         $this->blogPostRepository = $blogPostRepository;
+        $this->blogCategoryRepository=$blogCategoryRepository;
     }
     public function index()
     {
@@ -58,7 +61,14 @@ class PostAdminController extends BaseController
      */
     public function edit(string $id)
     {
-        //
+        $item = $this->blogPostRepository->getEdit($id);
+        if(empty($item)){
+            abort(404);
+        }
+
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+
+        return View::make('blog.admin.posts.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
@@ -66,7 +76,7 @@ class PostAdminController extends BaseController
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd(__METHOD__, $request->all(), $id);
     }
 
     /**
@@ -74,6 +84,6 @@ class PostAdminController extends BaseController
      */
     public function destroy(string $id)
     {
-        //
+        dd(__METHOD__, $id, request()->all());
     }
 }
