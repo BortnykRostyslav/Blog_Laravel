@@ -3,14 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-class BlogPostUpdateRequest
+class BlogPostUpdateRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize():bool
     {
         return true;
     }
-
-    public function rules()
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     */
+    public function rules():array
     {
         return [
             'title'           => 'required|min:3|max:200',

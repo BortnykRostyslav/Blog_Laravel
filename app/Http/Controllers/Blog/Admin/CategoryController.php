@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-use Illuminate\Support\Str;
+
 use App\Models\BlogCategory;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Http\Requests\BlogCategoryCreateRequest;
