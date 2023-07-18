@@ -46,7 +46,7 @@ class BlogCategoryObserver
     }
 
     /**
-     * Handle the BlogCategory "restored" event.
+     * Handle the BlogCategory "restored" event
      */
     public function restored(BlogCategory $blogCategory): void
     {
