@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Repositories\BlogPostRepository;
 use App\Repositories\BlogCategoryRepository;
 use App\Http\Requests\BlogPostUpdateRequest;
+use App\Http\Requests\BlogPostCreateRequest;
 
 /**
  * Управління статтями блога
@@ -41,15 +43,28 @@ class PostAdminController extends BaseController
      */
     public function create()
     {
-        //
+        $item = new BlogPost();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+
+        return View::make('blog.admin.posts.edit', ['item' => $item, 'categoryList' => $categoryList]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BlogPostCreateRequest $request)
     {
-        //
+        $data = $request->input();
+        //Створить об'єкт и добавить в БД
+        $item = (new BlogPost() )->create($data);
+
+        if($item){
+            return redirect()->route('blog.admin.posts.edit', [$item->id])
+                             ->with(['success' => 'Успішно збережено']);
+        } else {
+            return back()->withErrors(['msg' => 'Помилка збереження'])
+                        ->withInput();
+        }
     }
 
     /**

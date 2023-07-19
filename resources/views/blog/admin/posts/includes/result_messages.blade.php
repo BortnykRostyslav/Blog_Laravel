@@ -5,7 +5,11 @@
                 <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
                     <span aria-hidden="true"></span>
                 </button>
-                {{ $errors->first() }}
+                <ul>
+                    @foreach($errors->all() as $errorTxt)
+                        <li>{{ $errorTxt }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
@@ -16,7 +20,7 @@
         <div class="col-end-11">
             <div class="alert alert-succes" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true">&times</span>
                 </button>
                 {{ session()->get('success') }}
             </div>
