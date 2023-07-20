@@ -32,7 +32,7 @@ class CategoryController extends BaseController
 
     public function index()
     {
-        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(25);
 
 
         return View::make('blog.admin.category.index', ['paginator' => $paginator]);
