@@ -4,6 +4,9 @@
     <div class="container">
         <div class="row justify-items-center">
             <div class="col-end-12">
+
+                @include('blog.admin.posts.includes.result_messages')
+
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <a class="border-t-neutral-200" href="{{ route('blog.admin.posts.create') }}">Написати</a>
                 </nav>

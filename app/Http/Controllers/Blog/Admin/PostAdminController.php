@@ -131,6 +131,18 @@ class PostAdminController extends BaseController
      */
     public function destroy(string $id)
     {
-        dd(__METHOD__, $id, request()->all());
+        //Залишається в бд
+        $result = BlogPost::destroy($id);
+
+        //Повністю видаляє
+//        $result = BlogPost::destroy($id);
+
+        if($result){
+            return redirect()
+                ->route('blog.admin.posts.index')
+                ->with(['success' => "Запис id[$id] видалено"]);
+        }else{
+            return back()->withErrors(['msg' => 'Помилка видалення']);
+        }
     }
 }
