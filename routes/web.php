@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\Admin\CategoryController;
 use App\Http\Controllers\Blog\Admin\PostAdminController;
+use App\Http\Controllers\DiggingDeeperController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::group(['prefix' => 'digging_deeper',], function (){
+    Route::get('collections', [DiggingDeeperController::class, 'collections'])
+        ->name('digging_deeper.collections');
+});
 
 Route::group(['prefix' => 'blog'], function () {
     Route::resource('posts', PostController::class)->names('blog.posts');
