@@ -76,7 +76,7 @@ class PostAdminController extends BaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource
      */
     public function edit(string $id)
     {
